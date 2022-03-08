@@ -1,9 +1,12 @@
 import React from "react";
 
 const Todo = ({text}) => {
+
     return (
-        <div>
+        <div className="todocontainer">
             <li>{text}</li>
+            <button>Completed</button>
+            <button>Delete</button>
         </div>
     );
 }
