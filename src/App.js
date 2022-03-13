@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from './Comp_todo/Form';
 import Todolist from './Comp_todo/Todolist';
 
@@ -7,6 +7,31 @@ function App() {
   // Använder state för hantera todos
   // const [värdet, funktionen som tillåter dig ändra värdet] = "" för text, [] för array
   const [todos, setTodos] = useState([]); // State som håller koll på todos
+  
+  // Only once when reload
+  useEffect(() => {
+    LocalstorageGet();
+  }, []);
+
+  //use effect
+  useEffect(() => {
+    LocalstorageSave();
+  }, [todos]);
+
+  //Localstorage
+  const LocalstorageSave = () => {
+      localStorage.setItem('todos', JSON.stringify(todos));
+  };
+
+  const LocalstorageGet = () => {
+    if (localStorage.getItem('todos') === null) {
+      localStorage.setItem('todos', JSON.stringify([]));
+    } else {
+      let localtodo = JSON.parse(localStorage.getItem("todos"));
+      setTodos(localtodo);
+    }
+  };
+  
   return (
     <div className="App">
       <header className="App-header">
