@@ -1,15 +1,13 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 
 const Recharts = ({data}) => {
     return(
         <div className='charts'>
             <h3>Recharts</h3>
-            <ResponsiveContainer width="100%" aspect={3}>
+            <ResponsiveContainer width="99%" aspect={2}>
                 {/* Byte height eftersom Root inte har några dementions till aspect = 3 => En tredjedel av bredden */}
                 <BarChart
-                    width={500}
-                    height={300}
                     data={data}
                     margin={{
                         top: 50,
@@ -17,11 +15,9 @@ const Recharts = ({data}) => {
                         left: 50,
                         bottom: 50,
                     }}>
-                <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="team" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="starpoints" fill="#82ca9d" />
+                <YAxis domain={[0,100000]} tickCount={11}/>
+                <Bar dataKey="starpoints" fill="#AA4BF5" />
                 </BarChart>
             </ResponsiveContainer>
         </div>

@@ -12,7 +12,7 @@ const svg = d3.select('#D3charts')
     .append("svg")
     .attr("width", width)
     .attr("height", height)
-    .attr("viewBox", [0, 0, width, height]);
+    .attr("viewBox", "0 0 800 400")
 
 // Scaling
 const x = d3.scaleBand()
@@ -21,27 +21,27 @@ const x = d3.scaleBand()
     .padding(0.1)
 
 const y = d3.scaleLinear()
-    .domain([0, 400]) // Skalan på Y-axeln
+    .domain([0, 100000]) // Skalan på Y-axeln
     .range([height - 50, 50])
 
 // Axes
 function yAxis(g) {
     g.attr("transform", `translate(${60}, 0)`)
         .call(d3.axisLeft(y).ticks(null, data.format))
-        .attr("font-size", '20px')
+        .attr("font-size", '15px')
 }
 function xAxis(g) {
     g.attr("transform", `translate(0,${height - 50})`)
         .call(d3.axisBottom(x).tickFormat(i => data[i].team))
-        .attr("font-size", '20px')
+        .attr("font-size", '15px')
 }
 
 // SVG data
 svg.append("g")
-    .attr("fill", 'royalblue')
+    .attr("fill", '#AA4BF5')
     .selectAll("rect")
     .data(data.sort((a, b) => d3.descending(a.starpoints, b.starpoints)))
-    .join("rect")
+    .join("rect") //rect = Rectangle
         .attr("x", (d, i) => x(i))
         .attr("y", d => y(d.starpoints))
         .attr('title', (d) => d.starpoints)

@@ -1,40 +1,40 @@
 import React from "react";
 import {
     XYPlot,
-    XAxis, // Shows the values on x axis
-    YAxis, // Shows the values on y axis
-    VerticalBarSeries,
-    LabelSeries,
+    XAxis,
+    YAxis,
+    VerticalBarSeries
 } from "react-vis";
-import data from "./Data/dataSmall.json";
 
-class ReactVis extends React.Component {
-    render() {
-        const width = 800;
-        const height = width/2;
-        const Domain = [0, height];
+const ReactVis = ({data}) => {
+    const width = 800;
+    const height = width/2;
 
-        const dataName = data.map((d)=> {
-            return {x: d.team, 
-            y: d.starpoints}
-        });
+    const dataName = data.map((d)=> {
+        return {x: d.team, 
+        y: d.starpoints}
+    });
 
-        return (
-            <div className='charts'>
-                <h3>React-Vis</h3>
-                <XYPlot
-                    xType="ordinal"
-                    width={width}
-                    height={height}
-                >
-                    <XAxis />
-                    <YAxis />
-                    <VerticalBarSeries data={dataName} />
-                        
-                </XYPlot>
-            </div>
-        );
-    }
+    return (
+        <div className='charts'>
+            <h3>React-Vis</h3>
+            <XYPlot
+                xType="ordinal"
+                width={width}
+                height={height}
+                color="#AA4BF5"
+                yDomain={[0, 100000]} // Y-axel Skala
+                margin={{
+                    left: 70 // För att få Y-axelns siffror att visas fullt
+                }}
+            >
+                
+                <XAxis />
+                <YAxis />
+                <VerticalBarSeries data={dataName} />
+            </XYPlot>
+        </div>
+    );
 }
 
 export default ReactVis;

@@ -3,7 +3,9 @@ import React from 'react';
 import D3chart from './Comp_todo/D3chart';
 import Recharts from './Comp_todo/Recharts';
 import ReactVis from './Comp_todo/ReactVis';
-import data from './Comp_todo/Data/dataSmall.json';
+import StatusTable from './Comp_todo/StatusTable';
+// import data from './Comp_todo/Data/dataSmall.json';
+import data from './Comp_todo/Data/MOCK_DATA.json';
 
 function App() {
   
@@ -18,6 +20,7 @@ function App() {
         <D3chart data={data} />
         <ReactVis data={data} />
         <Recharts data={data} />
+        {/* <StatusTable data={data} /> */}
       </div>
     </div>
   );
