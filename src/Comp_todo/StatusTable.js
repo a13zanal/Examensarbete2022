@@ -3,8 +3,7 @@ import { useTable, useSortBy } from 'react-table';
 
 const StatusTable = ({data}) => {
 
-    const columns = React.useMemo(
-        () => [
+    const columns = React.useMemo( () => [
             {
             Header: 'Rang',
             accessor: '',
@@ -27,7 +26,7 @@ const StatusTable = ({data}) => {
         headerGroups,
         rows,
         prepareRow,
-    } = useTable ({ columns, data}, useSortBy);
+    } = useTable ({columns, data}, useSortBy);
 
     return(
         <div className='StatusTable'>

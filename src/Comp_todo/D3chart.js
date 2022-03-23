@@ -21,7 +21,7 @@ const x = d3.scaleBand()
     .padding(0.1)
 
 const y = d3.scaleLinear()
-    .domain([0, 100000]) // Skalan på Y-axeln
+    .domain([0, 10000]) // Skalan på Y-axeln
     .range([height - 50, 50])
 
 // Axes
@@ -40,7 +40,7 @@ function xAxis(g) {
 svg.append("g")
     .attr("fill", '#AA4BF5')
     .selectAll("rect")
-    .data(data.sort((a, b) => d3.descending(a.starpoints, b.starpoints)))
+    .data([...data]) // ... Skapar en local kopia
     .join("rect") //rect = Rectangle
         .attr("x", (d, i) => x(i))
         .attr("y", d => y(d.starpoints))

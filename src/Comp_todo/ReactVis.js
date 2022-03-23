@@ -23,7 +23,7 @@ const ReactVis = ({data}) => {
                 width={width}
                 height={height}
                 color="#AA4BF5"
-                yDomain={[0, 100000]} // Y-axel Skala
+                yDomain={[0, 10000]} // Y-axel Skala
                 margin={{
                     left: 70 // För att få Y-axelns siffror att visas fullt
                 }}

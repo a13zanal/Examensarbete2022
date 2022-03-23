@@ -16,7 +16,7 @@ const Recharts = ({data}) => {
                         bottom: 50,
                     }}>
                 <XAxis dataKey="team" />
-                <YAxis domain={[0,100000]} tickCount={11}/>
+                <YAxis domain={[0,10000]} tickCount={11}/>
                 <Bar dataKey="starpoints" fill="#AA4BF5" />
                 </BarChart>
             </ResponsiveContainer>
