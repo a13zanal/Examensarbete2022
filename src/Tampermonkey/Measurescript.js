@@ -11,67 +11,74 @@
 
 (function() {
 
-    var cnt=(localStorage.getItem("Counter"));
+    var cnt = (localStorage.getItem("Counter"));
 
     window.onload = function(){
-        console.log(cnt);
         startmeasurement();
     }
 
-        var starttime = localStorage.getItem("starttime");
+    /* Get starttime from localstorage for comparison between start and end time */
+    var starttime = localStorage.getItem("starttime");
 
-        var stopptime = new Date();
-        console.log(stopptime);
+    /* Stop time */
+    var stopptime = new Date();
 
-        var milliseconds = stopptime - Date.parse(starttime);
+    /* The difference between Stoptime and starttime in Milliseconds, Date.parse() = parses a string representation of a date, and returns the number of milliseconds */
+    var ms = stopptime - Date.parse(starttime);
 
-            /*if cnt is null then set cnt to 0*/
-            if(cnt == null){cnt = 0;}
+    /* If Counter(cnt) is null then set Counter to zero */
+    if(cnt == null){cnt = 0;}
 
-            /*set str to the result tab in localstorage*/
-            var str = localStorage.getItem("result");
+    /* Set string(str) to the result tab in localstorage */
+    var str = localStorage.getItem("result");
 
-            /*if cnt is 0 then set data string*/
-            if(cnt == 0){str="data:text/csv;charset=utf-8";}
+    /* If Counter is zero then set data string*/
+    /* if(cnt == 0){str="data:text/csv;charset=utf-8";} */
 
-            /*if str is null set str to empty*/
-            if(str == null){str = "";}
+    /* If string is null set string to empty "" */
+    if(str == null){str = "";}
 
-            /*when 10 + 1 iteration have gone through send str to get data to getData function*/
-            if (cnt == 6){getData(str); alert(localStorage.getItem("result"));}
+    /* When number of measurements + 1 iteration have gone through, send string to getData function and alert "Finish!" */
+    if (cnt == 6){getData(str); alert("Finish!");}
 
-            /*write out the result*/
-            str+= cnt + ", D3, " + milliseconds + "\n";
+    /* Define string measurement */
+    str+= cnt + ", D3, " + ms + "\n";
 
-            localStorage.setItem("result", str);
-            console.log(str);
+    /* Copie the string to localstorage */
+    localStorage.setItem("result", str);
 
-            Math.randSeed = cnt;
-            cnt++;
-            localStorage.setItem("Counter",cnt);
-            setTimeout(redirect, 1000);
+    /* Increse the Counter every measurement and set Counter in localstorage */
+    Math.randSeed = cnt;
+    cnt++;
+    localStorage.setItem("Counter",cnt);
 
-        function startmeasurement(){
-            var start = new Date();
-            localStorage.setItem("starttime", start);
-            console.log(start);
-            document.getElementsByClassName("D3")[0].click();
-        }
+    /* Set a delay before reload the page */
+    setTimeout(redirect, 1000);
 
-        function redirect(){
-            window.location.href = "http://localhost:3000/";
-        }
+    /* Set starttime, save in localstorage och press the chart button */
+    function startmeasurement(){
+        var start = new Date();
+        localStorage.setItem("starttime", start);
+        console.log(start);
+        document.getElementsByClassName("D3")[0].click();
+    }
 
-        function getData() {
-            localStorage.getItem("result");
+    /* Reload the page */
+    function redirect(){
+        window.location.href = "http://localhost:3000/";
+    }
 
-            // Make anchor and click it!
-            var anchor = document.createElement("a");
-            anchor.setAttribute("href", encodeURI(str));
-            anchor.setAttribute("download", "my_data.csv");
-            anchor.innerHTML= "Click Here to download";
-            document.body.appendChild(anchor);
-            anchor.click();
-        }
+    /* Get data and download a datafile when measurement is finish */
+    function getData() {
+        localStorage.getItem("result");
+
+        // Make anchor and click it!
+        var anchor = document.createElement("a");
+        anchor.setAttribute("href", encodeURI(str));
+        anchor.setAttribute("download", "my_data.csv");
+        anchor.innerHTML= "Click Here to download";
+        document.body.appendChild(anchor);
+        anchor.click();
+    }
 
 })();
