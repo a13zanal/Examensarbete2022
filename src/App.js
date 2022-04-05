@@ -18,9 +18,9 @@ function App() {
         <h3> LEADERBOARD WITH JS VISUALIZATION LIBRARIES </h3>
         {/* Kopplingen mellan App.js och Form komponenten, med props som skickas här från main till komponenterna, obs kan ej skicka uppåt bara nedåt */}
         <div className="buttons">
-          <button onClick={() => setSelectedLib('D3')}>D3</button>
-          <button onClick={() => setSelectedLib('ReactVis')}>ReactVis</button>
-          <button onClick={() => setSelectedLib('Recharts')}>Recharts</button>
+          <button className='D3' onClick={() => setSelectedLib('D3')}>D3</button>
+          <button className='ReactVis' onClick={() => setSelectedLib('ReactVis')}>ReactVis</button>
+          <button className='Recharts' onClick={() => setSelectedLib('Recharts')}>Recharts</button>
         </div>
       </header>
       <div className='charts-container'>

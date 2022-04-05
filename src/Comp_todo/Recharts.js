@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 
 const Recharts = ({data}) => {
+    // // Kommer köra på mount
+    // useEffect(() => {
+    //     console.time("Recharts");
+    // }, []);
+
+    // // Kommer köra efter varje render
+    // useLayoutEffect(() => {
+    //     console.timeEnd("Recharts");
+    // }, []);
+
     return(
         <div className='charts'>
             <h3>Recharts</h3>
@@ -17,7 +27,7 @@ const Recharts = ({data}) => {
                     }}>
                 <XAxis dataKey="team" />
                 <YAxis domain={[0,10000]} tickCount={11}/>
-                <Bar dataKey="starpoints" fill="#AA4BF5" />
+                <Bar dataKey="starpoints" fill="#AA4BF5" isAnimationActive={false}/>
                 </BarChart>
             </ResponsiveContainer>
         </div>
