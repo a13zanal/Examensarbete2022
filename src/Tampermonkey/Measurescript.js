@@ -14,52 +14,61 @@
     var cnt = (localStorage.getItem("Counter"));
 
     window.onload = function(){
-        startmeasurement();
-    }
+        if(cnt < 6){ /* When number of measurements + 1 iteration have gone through, send string to getData function and alert "Finish!" */
+            startmeasurement();
 
-    /* Get starttime from localstorage for comparison between start and end time */
-    var starttime = localStorage.getItem("starttime");
+            /* Get starttime from localstorage for comparison between start and end time */
+            var starttime = localStorage.getItem("starttime");
 
-    /* Stop time */
-    var stopptime = new Date();
+            /* Stop time */
+            var stopptime = new Date().getTime();
+            localStorage.setItem("stopptime", stopptime);
 
-    /* The difference between Stoptime and starttime in Milliseconds, Date.parse() = parses a string representation of a date, and returns the number of milliseconds */
-    var ms = stopptime - Date.parse(starttime);
+            /* The difference between Stoptime and starttime in Milliseconds, Date.parse() = parses a string representation of a date, and returns the number of milliseconds */
+            var ms = stopptime - starttime;
 
-    /* If Counter(cnt) is null then set Counter to zero */
-    if(cnt == null){cnt = 0;}
+            /* If Counter(cnt) is null then set Counter to zero */
+            if(cnt == null){cnt = 0;}
 
-    /* Set string(str) to the result tab in localstorage */
-    var str = localStorage.getItem("result");
+            /* Set string(str) to the result tab in localstorage */
+            var str = localStorage.getItem("result");
 
-    /* If Counter is zero then set data string*/
-    /* if(cnt == 0){str="data:text/csv;charset=utf-8";} */
+            /* If Counter is zero then set data string */
+            if(cnt == 0){str="data:text/csv;charset=utf-8";}
 
-    /* If string is null set string to empty "" */
-    if(str == null){str = "";}
+            /* If string is null set string to empty "" */
+            if(str == null){str = "";}
 
-    /* When number of measurements + 1 iteration have gone through, send string to getData function and alert "Finish!" */
-    if (cnt == 6){getData(str); alert("Finish!");}
+            /* Define string measurement */
+            str+= cnt + ", D3, " + ms + "\n";
 
-    /* Define string measurement */
-    str+= cnt + ", D3, " + ms + "\n";
+            /* Copie the string to localstorage */
+            localStorage.setItem("result", str);
 
-    /* Copie the string to localstorage */
-    localStorage.setItem("result", str);
+            /* Increse the Counter every measurement and set Counter in localstorage */
+            Math.randSeed = cnt;
+            cnt++;
+            localStorage.setItem("Counter",cnt);
 
-    /* Increse the Counter every measurement and set Counter in localstorage */
-    Math.randSeed = cnt;
-    cnt++;
-    localStorage.setItem("Counter",cnt);
-
-    /* Set a delay before reload the page */
-    setTimeout(redirect, 1000);
+            /* Set a delay before reload the page */
+            setTimeout(redirect, 1000);
+        } else {
+            /* Get data and download a datafile when measurement is finish */
+            var resultstr = localStorage.getItem("result");
+            // Make anchor and click on download!;
+            var anchor = document.createElement("a");
+            anchor.setAttribute("href", encodeURI(resultstr));
+            anchor.setAttribute("download", "d3.csv");
+            anchor.innerHTML= "Download";
+            document.body.appendChild(anchor);
+            anchor.click();
+        }
+   }
 
     /* Set starttime, save in localstorage och press the chart button */
     function startmeasurement(){
-        var start = new Date();
+        var start = new Date().getTime();
         localStorage.setItem("starttime", start);
-        console.log(start);
         document.getElementsByClassName("D3")[0].click();
     }
 
@@ -67,18 +76,4 @@
     function redirect(){
         window.location.href = "http://localhost:3000/";
     }
-
-    /* Get data and download a datafile when measurement is finish */
-    function getData() {
-        localStorage.getItem("result");
-
-        // Make anchor and click it!
-        var anchor = document.createElement("a");
-        anchor.setAttribute("href", encodeURI(str));
-        anchor.setAttribute("download", "my_data.csv");
-        anchor.innerHTML= "Click Here to download";
-        document.body.appendChild(anchor);
-        anchor.click();
-    }
-
 })();

@@ -10,8 +10,11 @@ const ReactVis = ({data}) => {
     const width = 800;
     const height = width/2;
 
+    var uniqueTeamName = 1;
+
     const dataName = data.map((d)=> {
-        return {x: d.team, 
+        ++uniqueTeamName;
+        return {x: d.team + uniqueTeamName, 
         y: d.starpoints}
     });
 
