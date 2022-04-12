@@ -15,7 +15,7 @@ const Recharts = ({data}) => {
     return(
         <div className='charts'>
             <h3>Recharts</h3>
-            <ResponsiveContainer width="99%" aspect={2}>
+            <ResponsiveContainer width={800} aspect={2}>
                 {/* Byte height eftersom Root inte har några dementions till aspect = 3 => En tredjedel av bredden */}
                 <BarChart
                     data={data}

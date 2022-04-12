@@ -63,7 +63,7 @@
             document.body.appendChild(anchor);
             anchor.click();
         }
-   }
+    }
 
     /* Set starttime, save in localstorage och press the chart button */
     function startmeasurement(){
