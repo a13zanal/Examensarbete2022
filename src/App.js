@@ -3,11 +3,13 @@ import React, { useState } from 'react';
 import D3chart from './Comp_todo/D3chart';
 import Recharts from './Comp_todo/Recharts';
 import ReactVis from './Comp_todo/ReactVis';
-import data from './Comp_todo/Data/MOCK_DATA.json';
+import dataThousand from './Comp_todo/Data/MOCK_DATA_1000.json';
+import dataTenThousand from './Comp_todo/Data/MOCK_DATA_10000.json';
 
 function App() {
 
-  const sortedData = [...data].slice().sort((a, b) => b.starpoints - a.starpoints);
+  const sortedData = [...dataThousand].slice().sort((a, b) => b.starpoints - a.starpoints);
+  // const sortedData = [...dataTenThousand].slice().sort((a, b) => b.starpoints - a.starpoints);
 
   const [selectedLib, setSelectedLib] = useState();
 
