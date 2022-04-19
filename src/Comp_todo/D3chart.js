@@ -1,6 +1,5 @@
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as d3 from 'd3';
-import continuousColorLegend from 'react-vis/dist/legends/continuous-color-legend';
 
 const D3chart = ({ data }) => {
 
@@ -8,9 +7,6 @@ const D3chart = ({ data }) => {
         // SVG container
         const width = 800;
         const height = width / 2;
-
-        // console.time("D3 react");
-        // console.time("d3");
 
         const svg = d3.select('#D3')
             .append("svg")
@@ -25,7 +21,7 @@ const D3chart = ({ data }) => {
             .padding(0.1)
 
         const y = d3.scaleLinear()
-            .domain([0, 10000]) // Skalan på Y-axeln
+            .domain([0, 10000])
             .range([height - 50, 50])
 
         // Axes
@@ -44,8 +40,8 @@ const D3chart = ({ data }) => {
         svg.append("g")
             .attr("fill", '#AA4BF5')
             .selectAll("rect")
-            .data([...data]) // ... Skapar en local kopia
-            .join("rect") //rect = Rectangle
+            .data([...data])
+            .join("rect")
             .attr("x", (d, i) => x(i))
             .attr("y", d => y(d.starpoints))
             .attr('title', (d) => d.starpoints)
@@ -56,13 +52,7 @@ const D3chart = ({ data }) => {
         svg.append("g").call(xAxis);
         svg.append("g").call(yAxis);
         svg.node();
-
-        // console.timeEnd("d3")
     }, []);
-
-    // useLayoutEffect(() => {
-    //     console.timeEnd("D3 react");
-    // }, []);
 
     return (
         <div className='charts'>

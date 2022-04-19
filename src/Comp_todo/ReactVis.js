@@ -14,8 +14,7 @@ const ReactVis = ({data}) => {
 
     const dataName = data.map((d)=> {
         ++uniqueTeamName;
-        return {x: d.team + uniqueTeamName, 
-        y: d.starpoints}
+        return {x: d.team + uniqueTeamName, y: d.starpoints}
     });
 
     return (
@@ -26,10 +25,9 @@ const ReactVis = ({data}) => {
                 width={width}
                 height={height}
                 color="#AA4BF5"
-                yDomain={[0, 10000]} // Y-axel Skala
-                //xRange={[0, 10]}
+                yDomain={[0, 10000]}
                 margin={{
-                    left: 70 // För att få Y-axelns siffror att visas fullt
+                    left: 70
                 }}
             >
                 
