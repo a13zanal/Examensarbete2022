@@ -14,7 +14,7 @@
     var cnt = (localStorage.getItem("Counter"));
 
     window.onload = function(){
-        if(cnt < 6) {
+        if(cnt < 101) {
             startmeasurement();
 
             var starttime = localStorage.getItem("starttime");
