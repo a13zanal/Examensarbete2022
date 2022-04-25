@@ -13,6 +13,13 @@ function App() {
 
   const [selectedLib, setSelectedLib] = useState();
 
+  var uniqueTeamName = 1;
+
+  const dataName = sortedData.map((d)=> {
+      ++uniqueTeamName;
+      return {x: d.team + uniqueTeamName, y: d.starpoints}
+  });
+
   return (
     <div className="App">
       <header className="App-header">
@@ -27,7 +34,7 @@ function App() {
       </header>
       <div className='charts-container'>
         {selectedLib === 'D3' && <D3chart data={sortedData} />}
-        {selectedLib === 'ReactVis' && <ReactVis data={sortedData} />}
+        {selectedLib === 'ReactVis' && <ReactVis data={dataName} />}
         {selectedLib === 'Recharts' && <Recharts data={sortedData} />}
       </div>
     </div>

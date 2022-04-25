@@ -10,13 +10,6 @@ const ReactVis = ({data}) => {
     const width = 800;
     const height = width/2;
 
-    var uniqueTeamName = 1;
-
-    const dataName = data.map((d)=> {
-        ++uniqueTeamName;
-        return {x: d.team + uniqueTeamName, y: d.starpoints}
-    });
-
     return (
         <div className='charts'>
             <h3>React-Vis</h3>
@@ -30,10 +23,9 @@ const ReactVis = ({data}) => {
                     left: 70
                 }}
             >
-                
                 <XAxis />
                 <YAxis />
-                <VerticalBarSeries data={dataName} />
+                <VerticalBarSeries data={data} />
             </XYPlot>
         </div>
     );
