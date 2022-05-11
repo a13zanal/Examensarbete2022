@@ -1,24 +1,22 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
 const Recharts = ({ data }) => {
-    // useEffect hook is invoked after the DOM has been painted.
-    useEffect(() => {
-        const startRecharts = new Date().getTime();
-        localStorage.setItem("starttimeRecharts", startRecharts);
-        console.log("startRecharts ", startRecharts);
-    });
+    const startRecharts = performance.now();
+    localStorage.setItem("starttimeRecharts", startRecharts);
+    console.log("startRecharts ", startRecharts);
 
-    // useLayoutEffect hook is invoked synchronously before changes are painted on the screen.
     useLayoutEffect(() => {
-        const stopRecharts = new Date().getTime();
+        const stopRecharts = performance.now();
         localStorage.setItem("stoptimeRecharts", stopRecharts);
         console.log("stopRecharts ", stopRecharts);
-    });
 
-    const starttime = localStorage.getItem("starttimeRecharts");
-    const stoptime = localStorage.getItem("stoptimeRecharts");
-    console.log("msRecharts", stoptime - starttime);
+        const starttime = parseFloat(localStorage.getItem("starttimeRecharts"));
+        const stoptime = parseFloat(localStorage.getItem("stoptimeRecharts"));
+        console.log("msRecharts", stoptime - starttime);
+        console.log(stoptime, localStorage.getItem("stoptimeRecharts"));
+        console.log(starttime);
+    });
 
     return (
         <div className="charts">

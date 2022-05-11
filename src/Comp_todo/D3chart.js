@@ -1,12 +1,12 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import * as d3 from "d3";
 
 const D3chart = ({ data }) => {
-    useEffect(() => {
-        const startd3 = new Date().getTime();
-        localStorage.setItem("starttimed3", startd3);
-        console.log("starttimed3 ", startd3);
+    const startd3 = performance.now();
+    localStorage.setItem("starttimed3", startd3);
+    console.log("starttimed3 ", startd3);
 
+    useEffect(() => {
         // SVG container
         const width = 800;
         const height = width / 2;
@@ -59,7 +59,7 @@ const D3chart = ({ data }) => {
         svg.append("g").call(yAxis);
         svg.node();
 
-        const stopd3 = new Date().getTime();
+        const stopd3 = performance.now();
         localStorage.setItem("stoptimed3", stopd3);
         console.log("stoptimed3 ", stopd3);
 

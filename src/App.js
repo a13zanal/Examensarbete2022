@@ -8,15 +8,15 @@ import dataTenThousand from "./Comp_todo/Data/MOCK_DATA_10000.json";
 import dataFemThousand from "./Comp_todo/Data/MOCK_DATA_50000.json";
 
 function App() {
-    // const sortedData = [...dataThousand]
-    //     .slice()
-    //     .sort((a, b) => b.starpoints - a.starpoints);
+    const sortedData = [...dataThousand]
+        .slice()
+        .sort((a, b) => b.starpoints - a.starpoints);
 
     //const sortedData = [...dataTenThousand].slice().sort((a, b) => b.starpoints - a.starpoints);
 
-    const sortedData = [...dataFemThousand]
-        .slice()
-        .sort((a, b) => b.starpoints - a.starpoints);
+    // const sortedData = [...dataFemThousand]
+    //     .slice()
+    //     .sort((a, b) => b.starpoints - a.starpoints);
 
     const [selectedLib, setSelectedLib] = useState();
 

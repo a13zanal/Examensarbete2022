@@ -1,27 +1,23 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import { XYPlot, XAxis, YAxis, VerticalBarSeries } from "react-vis";
 
 const ReactVis = ({ data }) => {
     const width = 800;
     const height = width / 2;
 
-    // useEffect hook is invoked after the DOM has been painted.
-    useEffect(() => {
-        const startReactVis = new Date().getTime();
-        localStorage.setItem("starttimeReactVis", startReactVis);
-        console.log("startReactVis ", startReactVis);
-    });
+    const startReactVis = performance.now();
+    localStorage.setItem("starttimeReactVis", startReactVis);
+    console.log("startReactVis ", startReactVis);
 
-    // useLayoutEffect hook is invoked synchronously before changes are painted on the screen.
     useLayoutEffect(() => {
-        const stopReactVis = new Date().getTime();
+        const stopReactVis = performance.now();
         localStorage.setItem("stoptimeReactVis", stopReactVis);
         console.log("stopReactVis ", stopReactVis);
-    });
 
-    const starttime = localStorage.getItem("starttimeReactVis");
-    const stoptime = localStorage.getItem("stoptimeReactVis");
-    console.log("msReactVis", stoptime - starttime);
+        const starttime = localStorage.getItem("starttimeReactVis");
+        const stoptime = localStorage.getItem("stoptimeReactVis");
+        console.log("msReactVis", stoptime - starttime);
+    });
 
     return (
         <div className="charts">
