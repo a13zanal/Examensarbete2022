@@ -5,20 +5,6 @@ const ReactVis = ({ data }) => {
     const width = 800;
     const height = width / 2;
 
-    const startReactVis = performance.now();
-    localStorage.setItem("starttimeReactVis", startReactVis);
-    console.log("startReactVis ", startReactVis);
-
-    useLayoutEffect(() => {
-        const stopReactVis = performance.now();
-        localStorage.setItem("stoptimeReactVis", stopReactVis);
-        console.log("stopReactVis ", stopReactVis);
-
-        const starttime = localStorage.getItem("starttimeReactVis");
-        const stoptime = localStorage.getItem("stoptimeReactVis");
-        console.log("msReactVis", stoptime - starttime);
-    });
-
     let timeDuration = 0;
 
     const callback = (
@@ -56,7 +42,7 @@ const ReactVis = ({ data }) => {
         if (timeDuration > 0) {
             localStorage.setItem("msRV", timeDuration);
         } else {
-            console.log("Nooo");
+            console.log("timeDuration = 0");
         }
     };
 

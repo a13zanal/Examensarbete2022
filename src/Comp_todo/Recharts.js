@@ -2,22 +2,6 @@ import React, { useLayoutEffect, Profiler } from "react";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 
 const Recharts = ({ data }) => {
-    // const startRecharts = performance.now();
-    // localStorage.setItem("starttimeRecharts", startRecharts);
-    // console.log("startRecharts ", startRecharts);
-
-    // useLayoutEffect(() => {
-    //     const stopRecharts = performance.now();
-    //     localStorage.setItem("stoptimeRecharts", stopRecharts);
-    //     console.log("stopRecharts ", stopRecharts);
-
-    //     const starttime = parseFloat(localStorage.getItem("starttimeRecharts"));
-    //     const stoptime = parseFloat(localStorage.getItem("stoptimeRecharts"));
-    //     console.log("msRecharts", stoptime - starttime);
-    //     console.log(stoptime, localStorage.getItem("stoptimeRecharts"));
-    //     console.log(starttime);
-    // });
-
     let timeDuration = 0;
 
     const callback = (
@@ -55,7 +39,7 @@ const Recharts = ({ data }) => {
         if (timeDuration > 0) {
             localStorage.setItem("msRC", timeDuration);
         } else {
-            console.log("error");
+            console.log("timeDuration = 0");
         }
     };
 
