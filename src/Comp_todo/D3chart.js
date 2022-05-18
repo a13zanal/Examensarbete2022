@@ -63,6 +63,8 @@ const D3chart = ({ data }) => {
         localStorage.setItem("stoptimed3", stopd3);
         console.log("stoptimed3 ", stopd3);
 
+        const ms = stopd3 - startd3;
+        localStorage.setItem("msd3", ms);
         console.log("startstopd3", stopd3 - startd3);
     }, []);
 
